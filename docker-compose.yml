@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  # These are the containers I want created:
+  redis-server: 
+    #  use some image redis
+    image: 'redis'
+  node-app: 
+    # use Dockerfile in local directory to build
+    build: .
+    ports:
+      # the dash specifies an array
+      # map local machine port to container port 
+      # just for us to access the container (node)
+      # No need to specify networking between node and redis:
+      # this docker-compose does it because we specified 2 services.
+      - "4001:8081"
